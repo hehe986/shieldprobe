@@ -29,7 +29,7 @@ BANNER = r"""
   ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝
 """
 
-VERSION = "2.0.0"
+VERSION = "1.1.0"
 
 def print_banner():
     print(Fore.CYAN + BANNER)
