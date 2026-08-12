@@ -11,7 +11,7 @@
 <p align="center">Audit your web security posture in seconds.</p>
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square&logo=python">
-  <img src="https://img.shields.io/badge/platform-Linux%20%7C%20Kali-informational?style=flat-square">
+  <img src="https://img.shields.io/badge/platform-Linux%20%7C%20Any%20Distro-informational?style=flat-square">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
   <img src="https://img.shields.io/badge/headers-11%2B-purple?style=flat-square">
   <img src="https://img.shields.io/badge/version-2.0.0-orange?style=flat-square">
@@ -76,9 +76,31 @@ cd shieldprobe
 bash install.sh
 ```
 
-> **Kali Linux / Debian:**
+> **Kali Linux / Ubuntu / Debian:**
 > ```bash
 > pip install -r requirements.txt --break-system-packages
+> ```
+
+> **Arch Linux / Manjaro:**
+> ```bash
+> pip install -r requirements.txt --break-system-packages
+> ```
+
+> **Fedora / RHEL / CentOS:**
+> ```bash
+> pip3 install -r requirements.txt
+> ```
+
+> **openSUSE:**
+> ```bash
+> pip3 install -r requirements.txt
+> ```
+
+> **Universal (semua distro) — via venv:**
+> ```bash
+> python3 -m venv venv
+> source venv/bin/activate
+> pip install -r requirements.txt
 > ```
 
 ## Usage
