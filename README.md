@@ -20,16 +20,16 @@
 ---
 
 ```
-  ╔══════════════════════════════════════════════════════════════╗
-  ║   URL/Domain                                                 ║
-  ║       │                                                      ║
-  ║       ├──▶ SSL/TLS Audit    (protocol · expiry · SAN)       ║
-  ║       ├──▶ Security Headers (11 headers · CSP deep scan)    ║
-  ║       ├──▶ Cookie Audit     (HttpOnly · Secure · SameSite)  ║
-  ║       ├──▶ CORS Check       (wildcard · null origin · creds)║
-  ║       ├──▶ Fingerprinting   (server · framework · version)  ║
-  ║       └──▶ Score: 0–100     A / B / C / F                   ║
-  ╚══════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════╗
+  ║  URL/Domain                                              ║
+  ║      │                                                   ║
+  ║      ├──▶ SSL/TLS Audit     protocol · expiry · SAN     ║
+  ║      ├──▶ Security Headers  11 headers · CSP deep scan  ║
+  ║      ├──▶ Cookie Audit      HttpOnly · Secure · Same    ║
+  ║      ├──▶ CORS Check        wildcard · null · creds     ║
+  ║      ├──▶ Fingerprinting    server · framework · ver    ║
+  ║      └──▶ Score: 0–100      A / B / C / F               ║
+  ╚══════════════════════════════════════════════════════════╝
 ```
 
 ## What is ShieldProbe?
