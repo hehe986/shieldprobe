@@ -29,7 +29,7 @@ BANNER = r"""
   ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝
 """
 
-VERSION = "1.1.0"
+VERSION = "2.0.0"
 
 def print_banner():
     print(Fore.CYAN + BANNER)
@@ -476,8 +476,12 @@ def score_label(score: int) -> tuple:
         return 'A — LOW RISK',      Fore.GREEN
     elif score >= 70:
         return 'B — MEDIUM RISK',   Fore.YELLOW
-    elif score >= 50:
+    elif score >= 55:
         return 'C — HIGH RISK',     Fore.RED
+    elif score >= 40:
+        return 'D — HIGH RISK',     Fore.RED
+    elif score >= 20:
+        return 'E — CRITICAL RISK', Fore.RED + Style.BRIGHT
     else:
         return 'F — CRITICAL RISK', Fore.RED + Style.BRIGHT
 
