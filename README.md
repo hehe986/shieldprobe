@@ -154,10 +154,12 @@ python shieldprobe.py --url https://target.com --no-ssl
 ## Score Grading
 
 ```
-  A  (85–100)  ██████████████████████  LOW RISK
-  B  (70–84)   ██████████████░░░░░░░░  MEDIUM RISK
-  C  (50–69)   ███████████░░░░░░░░░░░  HIGH RISK
-  F  (0–49)    ██████░░░░░░░░░░░░░░░░  CRITICAL RISK
+  A  (85–100)  ████████████████████  LOW RISK
+  B  (70–84)   ████████████████░░░░  MEDIUM RISK
+  C  (55–69)   ████████████░░░░░░░░  HIGH RISK
+  D  (40–54)   ████████░░░░░░░░░░░░  HIGH RISK
+  E  (20–39)   ████░░░░░░░░░░░░░░░░  CRITICAL RISK
+  F  (0–19)    ██░░░░░░░░░░░░░░░░░░  CRITICAL RISK
 ```
 
 ## Author
