@@ -29,7 +29,7 @@ BANNER = r"""
   ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝      ╚═════╝ ╚═════╝╚══════╝
 """
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 def print_banner():
     print(Fore.CYAN + BANNER)
@@ -118,7 +118,7 @@ SECURITY_HEADERS = {
     },
 }
 
-SEVERITY_SCORE  = {'CRITICAL': 30, 'HIGH': 20, 'MEDIUM': 10, 'LOW': 5}
+SEVERITY_SCORE  = {'CRITICAL': 15, 'HIGH': 10, 'MEDIUM': 5, 'LOW': 2}
 SEVERITY_COLOR  = {
     'CRITICAL': Fore.RED,
     'HIGH':     Fore.YELLOW,
@@ -197,7 +197,7 @@ def audit_ssl(domain: str) -> dict:
             expiry_str = cert.get('notAfter', '')
             if expiry_str:
                 expiry    = datetime.datetime.strptime(expiry_str, '%b %d %H:%M:%S %Y %Z')
-                days_left = (expiry - datetime.datetime.utcnow()).days
+                days_left = (expiry - datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)).days
                 result['expiry']    = expiry.strftime('%Y-%m-%d')
                 result['days_left'] = days_left
                 if days_left < 0:
@@ -448,16 +448,27 @@ def check_http_to_https(domain: str, timeout: int) -> dict:
 
 def calculate_score(header_results: list, ssl_result: dict, cors: dict, csp_issues: list) -> int:
     score = 100
+
+    # Headers — max penalty 60 points total
+    header_penalty = 0
     for h in header_results:
         if h['status'] == 'MISSING':
-            score -= SEVERITY_SCORE.get(h['severity'], 0)
+            header_penalty += SEVERITY_SCORE.get(h['severity'], 0)
         elif h['status'] == 'WEAK':
-            score -= SEVERITY_SCORE.get(h['severity'], 0) // 2
-    for issue in ssl_result.get('issues', []):
-        score -= 10
+            header_penalty += SEVERITY_SCORE.get(h['severity'], 0) // 2
+    score -= min(header_penalty, 60)
+
+    # SSL — max penalty 20 points
+    ssl_penalty = len(ssl_result.get('issues', [])) * 5
+    score -= min(ssl_penalty, 20)
+
+    # CORS — max penalty 15 points
     if cors.get('vulnerable'):
-        score -= 20
-    score -= len(csp_issues) * 5
+        score -= min(len(cors.get('issues', [])) * 5, 15)
+
+    # CSP deep issues — max penalty 10 points
+    score -= min(len(csp_issues) * 2, 10)
+
     return max(0, min(100, score))
 
 def score_label(score: int) -> tuple:
