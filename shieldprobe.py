@@ -473,17 +473,17 @@ def calculate_score(header_results: list, ssl_result: dict, cors: dict, csp_issu
 
 def score_label(score: int) -> tuple:
     if score >= 85:
-        return 'A — LOW RISK',      Fore.GREEN
+        return 'A — VERY LOW RISK',  Fore.GREEN
     elif score >= 70:
-        return 'B — MEDIUM RISK',   Fore.YELLOW
+        return 'B — LOW RISK',       Fore.GREEN
     elif score >= 55:
-        return 'C — HIGH RISK',     Fore.RED
+        return 'C — MEDIUM RISK',    Fore.YELLOW
     elif score >= 40:
-        return 'D — HIGH RISK',     Fore.RED
+        return 'D — HIGH RISK',      Fore.RED
     elif score >= 20:
-        return 'E — CRITICAL RISK', Fore.RED + Style.BRIGHT
+        return 'E — VERY HIGH RISK', Fore.RED + Style.BRIGHT
     else:
-        return 'F — CRITICAL RISK', Fore.RED + Style.BRIGHT
+        return 'F — CRITICAL RISK',  Fore.RED + Style.BRIGHT
 
 # ─────────────────────────────────────────────
 #  PRINT RESULTS
